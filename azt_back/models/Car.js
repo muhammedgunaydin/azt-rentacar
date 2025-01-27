@@ -20,12 +20,12 @@ const CarSchema = new Schema({
   },
   fuelType: {
     type: String,
-    enum: ['Manuel, Automatic, Electric, Hybrid'],
+    enum: ['Petrol', 'Automatic', 'Electric', 'Hybrid'],
     required: true,
   },
   transmission: {
     type: String,
-    enum: ['Automatic, Manual'],
+    enum: ['Automatic', 'Manual'],
     required: true,
   },
   isAvailable: {
