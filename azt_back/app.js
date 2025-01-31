@@ -1,10 +1,11 @@
 const express = require('express')
 const volleyball = require('volleyball')
+const dbconn = require('./db/dbconn')
+require('dotenv').config()
 const carRouter = require('./routers/carRouter')
 const userRouter = require('./routers/userRouter')
 const bookingRouter = require('./routers/bookingRouter')
 const paymentRouter = require('./routers/paymentRouter')
-const dbconn = require('./db/dbconn')
 
 const app = express()
 

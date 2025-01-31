@@ -1,9 +1,35 @@
 const Car = require('../models/Car')
+const { upload } = require('../config/cloudinary')
 
 exports.createCar = async (req, res) => {
   try {
-    const car = await Car.create(req.body)
-    res.status(201).send(`${car.brand} ${car.model} created successfully`)
+    if (!req.file) {
+      return res.status(400).json({ Err: 'No image provided' })
+    }
+    const {
+      brand,
+      model,
+      year,
+      pricePerDay,
+      fuelType,
+      transmission,
+      isAvailable,
+      km,
+    } = req.body
+    const imageUrl = req.file.path
+
+    const newCar = await Car.create({
+      brand,
+      model,
+      year,
+      pricePerDay,
+      fuelType,
+      transmission,
+      isAvailable,
+      km,
+      image: imageUrl,
+    })
+    res.status(201).send(`${newCar.brand} ${newCar.model} created successfully`)
   } catch (err) {
     res.status(400).json({
       status: 'failed to create car',
