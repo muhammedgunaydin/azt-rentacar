@@ -45,7 +45,7 @@ exports.updateBooking = async (req, res) => {
       { new: true }
     )
     if (!uptBooking) return res.status(404).send('Booking not found')
-    res.status(201).json(uptBooking)
+    res.status(200).json(uptBooking)
   } catch (err) {
     res.status(500).json({
       status: 'Failed to update booking',
