@@ -54,15 +54,15 @@ exports.updateBooking = async (req, res) => {
   }
 }
 
-exports.deleteBooking = async (req, res)=>{
-    try {
-        const dltBooking = await Booking.findByIdAndDelete(req.params.id)
-        if(!dltBooking) return res.status(404).send('Booking not found')
-        res.status(200).send('Booking deleted successfully')
-    } catch (err) {
-        res.status(500).json({
-            status: 'Failed to delete booking',
-            err,
-        })
-    }
+exports.deleteBooking = async (req, res) => {
+  try {
+    const dltBooking = await Booking.findByIdAndDelete(req.params.id)
+    if (!dltBooking) return res.status(404).send('Booking not found')
+    res.status(200).send('Booking deleted successfully')
+  } catch (err) {
+    res.status(500).json({
+      status: 'Failed to delete booking',
+      err,
+    })
+  }
 }
