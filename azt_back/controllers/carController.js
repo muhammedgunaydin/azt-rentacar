@@ -38,14 +38,14 @@ exports.GetCarById = async (req, res) => {
 
 exports.updateCar = async (req, res) => {
   try {
-    const car = await Car.findOneAndUpdate(
-      { _id: req.params.id },
-      { $set: req.body }
-    )
-    res.status(200).send('Car updated succesfully')
+    const updateCar = await Car.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    })
+    if (!updateCar) return res.status(404).send('Car not found')
+    res.status(200).json(updateCar)
   } catch (err) {
-    res.status(400).json({
-      status: 'failed to update car',
+    res.status(500).json({
+      status: 'Failed to update Car',
       err,
     })
   }
